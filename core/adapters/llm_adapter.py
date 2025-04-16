@@ -2,7 +2,11 @@ import logging
 from abc import ABC, abstractmethod
 from autogen import AssistantAgent
 from core.models import ModelPreferences
+from typing import List, Dict
+from core.config.roles import MessageRole
 logger = logging.getLogger(__name__)
+
+
 
 
 class LLMAdapter(ABC):
@@ -46,9 +50,12 @@ class LLMAdapter(ABC):
     @abstractmethod
     def build_llm_config(self) -> dict:
         pass
-
+    
+    
+     
+        
     @abstractmethod
-    def generate_response(self, task_description: str,additional_context:str=None) -> str:
+    def generate_response(self, instructions:str) -> str:
         pass
 
     def _initialize_agent(self) -> AssistantAgent:
