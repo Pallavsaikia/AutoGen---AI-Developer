@@ -1,17 +1,22 @@
 import re
+import re
+
 def extract_code(text, language="python"):
     """
     Extracts code of the specified language from a text.
+
+    If the text is already clean (no backticks), return it as a single code block.
 
     :param text: The text containing the code.
     :param language: The programming language of the code inside the backticks (default is "python").
     :return: List of extracted code snippets.
     """
-    # Regex pattern that matches code blocks with a specified language
+    # If the text contains no code fences, assume it's already a clean code snippet
+    if "```" not in text:
+        return [text.strip()]
+    
+    # Regex pattern that matches code blocks with the specified language
     pattern = r'```' + re.escape(language) + r'\n(.*?)\n```'
-
-    # Use re.DOTALL to allow matching multiline text
     matches = re.findall(pattern, text, re.DOTALL)
 
-    # Return the matched code
-    return matches
+    return [match.strip() for match in matches] if matches else [text.strip()]

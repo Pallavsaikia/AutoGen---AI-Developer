@@ -1,1 +1,1 @@
-from core.memory.memory import Memory
+from core.memory.in_memory_adapter import InMemoryAdapter
