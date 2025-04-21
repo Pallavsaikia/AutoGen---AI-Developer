@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class OpenAIAdapter(LLMAdapter):
     @classmethod
     async def create(cls, name: str, system_message: str, memory: BaseMemoryAdapter = None, **llm_kwargs):
-        llm_kwargs.setdefault("model", "gpt-3.5-turbo")
+        llm_kwargs.setdefault("model", "gpt-4o-mini")
         return await super().create(name=name, system_message=system_message, memory=memory, **llm_kwargs) 
      
     def build_llm_config(self) -> dict:
